@@ -38,10 +38,10 @@ Example of requests:
  
 for lazy, curl examples:
 
-	curl -i -X GET http://localhost:5000/api/todo
-	curl -i -X GET http://localhost:5000/api/todo/1
-	curl -i -X DELETE http://localhost:5000/api/todo/1
-	curl -i -X POST http://localhost:5000/api/todo -H 'Content-Type: application/json' -d '{"Title":"WebApi + Docker","IsDone":"true"}'
+	curl -i -X GET http://localhost/api/todo
+	curl -i -X GET http://localhost/api/todo/1
+	curl -i -X DELETE http://localhost/api/todo/1
+	curl -i -X POST http://localhost/api/todo -H 'Content-Type: application/json' -d '{"Title":"WebApi + Docker","IsDone":"true"}'
 
 ## Missing Git or Docker?
 
