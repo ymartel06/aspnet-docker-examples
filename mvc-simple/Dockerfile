@@ -1,8 +1,8 @@
-FROM microsoft/aspnet
+FROM microsoft/aspnet:1.0.0-beta4
 
 COPY . /app
 WORKDIR /app
-RUN ["kpm", "restore"]
+RUN ["dnu", "restore"]
 
 EXPOSE 5004
 ENTRYPOINT ["k", "kestrel"]
