@@ -1,23 +1,23 @@
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Routing;
 using Microsoft.Framework.DependencyInjection;
+using Microsoft.Framework.Logging;
 
 namespace HelloMvc
 {
-    public class Startup
-    {
-        public void Configure(IApplicationBuilder app)
-        {
-            app.UseErrorPage();
+	public class Startup
+	{
+		public void ConfigureServices(IServiceCollection services)
+		{
+			services.AddMvc();
+		}
 
-            app.UseServices(services =>
-            {
-                services.AddMvc();
-            });
-
-            app.UseMvc();
-
-            app.UseWelcomePage();
+		public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+		{
+			loggerFactory.AddConsole();
+			app.UseDeveloperExceptionPage();
+			app.UseMvcWithDefaultRoute();
+			app.UseWelcomePage();
         }       
     }
 }
