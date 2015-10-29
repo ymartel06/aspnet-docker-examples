@@ -9,10 +9,10 @@ namespace MvcSample.Web
 		[Route("[action]")]
 		public IActionResult Index()
 		{
-			return View(User());
+			return View(GetUser());
 		}
 			
-        public User User()
+        public User GetUser()
         {
             User user = new User()
             {
