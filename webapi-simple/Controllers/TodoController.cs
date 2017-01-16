@@ -1,11 +1,12 @@
-using Microsoft.AspNet.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using TodoApi.Models;
 
 namespace TodoApi.Controllers
 {
-
     [Route("api/[controller]")]
     public class TodoController : Controller
     {
@@ -26,7 +27,7 @@ namespace TodoApi.Controllers
             var item = _items.FirstOrDefault(x => x.Id == id);
             if (item == null)
             {
-                return HttpNotFound();
+                return new StatusCodeResult(404);
             }
 
             return new ObjectResult(item);
@@ -37,7 +38,7 @@ namespace TodoApi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                Context.Response.StatusCode = 400;
+                HttpContext.Response.StatusCode = 400;
             }
             else
             {
@@ -47,8 +48,8 @@ namespace TodoApi.Controllers
                 string url = Url.RouteUrl("GetByIdRoute", new { id = item.Id }, 
                     Request.Scheme, Request.Host.ToUriComponent());
 
-                Context.Response.StatusCode = 201; //201 Created
-                Context.Response.Headers["Location"] = url;
+                HttpContext.Response.StatusCode = 201; //201 Created
+                HttpContext.Response.Headers["Location"] = url;
             }
         }
 
@@ -58,10 +59,10 @@ namespace TodoApi.Controllers
             var item = _items.FirstOrDefault(x => x.Id == id);
             if (item == null)
             {
-                return HttpNotFound();
+                return new StatusCodeResult(404);
             }
             _items.Remove(item);
-            return new HttpStatusCodeResult(204); // 204 No Content
+            return new StatusCodeResult(204); // 204 No Content
         }
     }
 }

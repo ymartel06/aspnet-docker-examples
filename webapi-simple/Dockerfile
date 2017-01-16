@@ -1,8 +1,13 @@
-FROM microsoft/aspnet:1.0.0-beta8
+FROM microsoft/dotnet:1.1-sdk-projectjson
 
 COPY . /app
-WORKDIR /app
-RUN ["dnu", "restore"]
 
-EXPOSE 5004
-ENTRYPOINT ["dnx", "-p", "project.json", "kestrel"]
+WORKDIR /app
+
+RUN ["dotnet", "restore"]
+
+RUN ["dotnet", "build"]
+
+EXPOSE 5000/tcp
+
+CMD ["dotnet", "run", "--server.urls", "http://*:5000"]

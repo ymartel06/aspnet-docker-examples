@@ -24,7 +24,7 @@ From Ubuntu Command Line:
  * git clone https://github.com/ymartel06/aspnet-docker-examples.git
  * cd aspnet-docker-examples/webapi-simple/
  * sudo docker build -t webapi-simple .
- * sudo docker run -t -d -p 80:5004 webapi-simple 
+ * sudo docker run -t -d -p 80:5000 webapi-simple 
  
 
 Example of requests:
