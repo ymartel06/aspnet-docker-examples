@@ -1,26 +1,35 @@
-﻿using Microsoft.AspNet.Mvc;
-using MvcSample.Web.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
-namespace MvcSample.Web
+namespace MvcSample.Controllers
 {
-	[Route("[controller]")]
-	public class HomeController : Controller
-	{
-		[Route("[action]")]
-		public IActionResult Index()
-		{
-			return View(GetUser());
-		}
-			
-        public User GetUser()
+    public class HomeController : Controller
+    {
+        public IActionResult Index()
         {
-            User user = new User()
-            {
-                Name = "Yohann Martel",
-                Address = "Montreal"
-            };
+            return View();
+        }
 
-            return user;
+        public IActionResult About()
+        {
+            ViewData["Message"] = "Your application description page.";
+
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            ViewData["Message"] = "Your contact page.";
+
+            return View();
+        }
+
+        public IActionResult Error()
+        {
+            return View();
         }
     }
 }
